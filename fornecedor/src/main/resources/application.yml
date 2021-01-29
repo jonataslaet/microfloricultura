@@ -1,0 +1,12 @@
+server: 
+  port: 8081
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/dbfornecedor
+    username: jonataslaet
+    password: blendo273
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.MySQL5Dialect
