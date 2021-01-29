@@ -1,6 +1,6 @@
 package br.com.jonataslaet.microservice.loja.controller.dto;
 
-public class InfoFornecedor {
+public class InfoFornecedorDTO {
 	
 	String endereco;
 
