@@ -2,11 +2,9 @@ server:
   port: 8888
  
 spring:
-  profiles:
-    active: native
   cloud:
     config:
       server:
-        bootstrap: true
-        native:
-          search-locations: /home/maida/meuworkspace/microfloricultura/config
+        git:
+          uri: https://github.com/jonataslaet/microfloricultura
+          search-paths: config/fornecedor
