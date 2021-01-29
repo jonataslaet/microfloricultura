@@ -4,7 +4,18 @@ server:
 spring:
   application:
     name: 'fornecedor'
-    
+  profiles:
+    active: default
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    platform: org.hibernate.dialect.MySQL5Dialect
+    url: jdbc:mysql://localhost:3306/dbfornecedor
+    username: jonataslaet
+    password: blendo273
+  jpa:
+    hibernate:
+      ddl-auto: update
+      
 eureka:
   client:
     fetch-registry: true
