@@ -6,14 +6,13 @@ import org.springframework.stereotype.Service;
 import br.com.jonataslaet.microservice.fornecedor.model.InfoFornecedor;
 import br.com.jonataslaet.microservice.fornecedor.repository.InfoRepository;
 
-@Service	
+@Service
 public class InfoService {
-	
+
 	@Autowired
 	private InfoRepository infoRepository;
 	
 	public InfoFornecedor getInfoPorEstado(String estado) {
 		return infoRepository.findByEstado(estado);
 	}
-
 }

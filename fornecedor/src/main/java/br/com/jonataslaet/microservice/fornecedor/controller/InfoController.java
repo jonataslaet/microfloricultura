@@ -11,9 +11,9 @@ import br.com.jonataslaet.microservice.fornecedor.service.InfoService;
 @RestController
 @RequestMapping("/info")
 public class InfoController {
-
+	
 	@Autowired
-	InfoService infoService;
+	private InfoService infoService;
 	
 	@RequestMapping("/{estado}")
 	public InfoFornecedor getInfoPorEstado(@PathVariable String estado) {
