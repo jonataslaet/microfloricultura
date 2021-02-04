@@ -5,6 +5,8 @@ spring:
   cloud:
     config:
       server:
+        encrypt:
+          enabled: false
         git:
           uri: https://github.com/jonataslaet/microfloricultura
           search-paths: config/fornecedor
