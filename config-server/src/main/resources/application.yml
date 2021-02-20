@@ -9,4 +9,4 @@ spring:
           enabled: false
         git:
           uri: https://github.com/jonataslaet/microfloricultura
-          search-paths: config/fornecedor
+          search-paths: config/fornecedor, config/loja
