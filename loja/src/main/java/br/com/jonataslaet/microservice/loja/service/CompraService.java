@@ -12,13 +12,23 @@ import br.com.jonataslaet.microservice.loja.controller.CompraDTO;
 import br.com.jonataslaet.microservice.loja.controller.dto.InfoFornecedorDTO;
 import br.com.jonataslaet.microservice.loja.controller.dto.InfoPedidoDTO;
 import br.com.jonataslaet.microservice.loja.model.Compra;
+import br.com.jonataslaet.microservice.loja.repository.CompraRepository;
 
 @Service
 public class CompraService {
 	private static final Logger LOG = LoggerFactory.getLogger(CompraService.class);
 	
 	@Autowired
+	private CompraRepository compraRepository;
+	
+	@Autowired
 	private FornecedorClient fornecedorClient;
+	
+	@HystrixCommand
+	public Compra recuperaCompra(Long idCompra) {
+		Compra compra = compraRepository.findById(idCompra).orElse(null);
+		return compra;
+	}
 	
 	@HystrixCommand(fallbackMethod = "realizaCompraFallBack")
 	public Compra realizaCompra(CompraDTO compra) {
@@ -35,6 +45,9 @@ public class CompraService {
 		compraSalva.setPedidoId(pedidoRealizado.getId());
 		compraSalva.setTempoDePreparo(pedidoRealizado.getTempoDePreparo());
 		compraSalva.setEnderecoDestino(compra.getEndereco().toString());
+		
+		LOG.info("Salvando compra no banco de dados da loja");
+		compraRepository.save(compraSalva);
 		
 		return compraSalva;
 	}
