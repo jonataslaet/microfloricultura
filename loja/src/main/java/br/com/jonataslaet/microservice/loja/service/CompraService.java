@@ -24,13 +24,13 @@ public class CompraService {
 	@Autowired
 	private FornecedorClient fornecedorClient;
 	
-	@HystrixCommand
+	@HystrixCommand(threadPoolKey = "recuperaCompraThreadPool")
 	public Compra recuperaCompra(Long idCompra) {
 		Compra compra = compraRepository.findById(idCompra).orElse(null);
 		return compra;
 	}
 	
-	@HystrixCommand(fallbackMethod = "realizaCompraFallBack")
+	@HystrixCommand(fallbackMethod = "realizaCompraFallBack", threadPoolKey = "realizaCompraThreadPool")
 	public Compra realizaCompra(CompraDTO compra) {
 		String estado = compra.getEndereco().getEstado();
 		LOG.info("Buscando informações do fornecedor do estado {}", estado);
