@@ -3,18 +3,35 @@ package br.com.jonataslaet.microservice.loja.model;
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import br.com.jonataslaet.microservice.loja.model.enums.CompraStatus;
 
 @Entity
 public class Compra {
 
-	@Id
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	
 	private Long pedidoId;
 	private Integer tempoDePreparo;
 	private String enderecoDestino;
 	private LocalDate dataParaEntrega;
 	private Long voucher;
 	
+	@Enumerated(EnumType.STRING)
+	private CompraStatus status;
+	
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
 	public Long getPedidoId() {
 		return pedidoId;
 	}
@@ -44,6 +61,12 @@ public class Compra {
 	}
 	public void setVoucher(Long numero) {
 		this.voucher = numero;
+	}
+	public CompraStatus getStatus() {
+		return status;
+	}
+	public void setStatus(CompraStatus status) {
+		this.status = status;
 	}
 	
 	
