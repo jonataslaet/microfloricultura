@@ -69,10 +69,6 @@ public class CompraService {
 		compraSalva.setStatus(CompraStatus.PEDIDO_REALIZADO);
 		compraRepository.save(compraSalva);
 		
-		if (1==1) {
-			throw new RuntimeException();
-		}
-		
 		InfoEntregaDTO entregaDto = new InfoEntregaDTO();
 		entregaDto.setPedidoId(pedidoRealizado.getId());
 		entregaDto.setDataParaEntrega(LocalDate.now().plusDays(pedidoRealizado.getTempoDePreparo()));
